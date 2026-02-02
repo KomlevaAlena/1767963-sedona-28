@@ -48,7 +48,7 @@
     "source/less/**/*.less"
   ],
   "engines": {
-    "node": "^16"
+    "node": "18.x"
   },
   "type": "module"
 }
