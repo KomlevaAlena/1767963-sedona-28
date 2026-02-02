@@ -56,3 +56,13 @@ git clone SSH-адрес_вашего_форка
 
 [check-image]: https://github.com/htmlacademy-adaptive/1767963-sedona-28/workflows/Project%20check/badge.svg?branch=master
 [check-url]: https://github.com/htmlacademy-adaptive/1767963-sedona-28/actions
+
+# Собери проект
+npm run build
+
+# Если сборка прошла - в папке build появились файлы
+ls build/
+
+# Запусти локальный сервер
+npm start
+
