@@ -1,7 +1,17 @@
 {
   "name": "sedona-28",
   "private": true,
-  "description": "Личный проект «Седона» от HTML Academy",
+  "description": "Личный проект «Седона» от HTML Academy",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "editorconfig": "editorconfig-cli",
+    "stylelint": "stylelint \"source/less/**/*.less\" --syntax less",
+    "lint": "npm run editorconfig && npm run stylelint",
+    "build": "gulp build --gulpfile gulpfile.cjs",
+    "start": "gulp --gulpfile gulpfile.cjs"
+  },
   "devDependencies": {
     "@htmlacademy/editorconfig-cli": "1.0.0",
     "autoprefixer": "10.4.0",
@@ -9,7 +19,6 @@
     "del": "^6.0.0",
     "gulp": "4.0.2",
     "gulp-htmlmin": "^5.0.1",
-    "gulp-imagemin": "^9.2.0",
     "gulp-less": "5.0.0",
     "gulp-plumber": "1.2.1",
     "gulp-postcss": "9.0.1",
@@ -17,21 +26,11 @@
     "gulp-svgmin": "^4.1.0",
     "gulp-svgstore": "^9.0.0",
     "gulp-terser": "^2.1.0",
-    "imagemin-mozjpeg": "^10.0.0",
-    "imagemin-pngquant": "^10.0.0",
-    "imagemin-webp": "^8.0.0",
     "postcss": "8.3.11",
     "postcss-csso": "^6.0.1",
     "stylelint": "13.13.1",
     "stylelint-config-htmlacademy": "0.1.11"
   },
-  "scripts": {
-  "editorconfig": "editorconfig-cli",
-  "stylelint": "stylelint \"source/less/**/*.less\" --syntax less",
-  "lint": "npm run editorconfig && npm run stylelint",
-  "build": "gulp build",
-  "start": "gulp"
-},
   "browserslist": [
     "last 2 versions",
     "not dead",
@@ -46,9 +45,5 @@
     "source/js/**/*.js",
     "source/img/**/*.svg",
     "source/less/**/*.less"
-  ],
-  "engines": {
-    "node": "24.x"
-  },
-  "type": "module"
+  ]
 }
