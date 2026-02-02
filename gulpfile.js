@@ -8,7 +8,10 @@ import autoprefixer from 'autoprefixer';
 import browser from 'browser-sync';
 import htmlmin from 'gulp-htmlmin';
 import terser from 'gulp-terser';
-import squoosh from 'gulp-libsquoosh';
+import imagemin from 'gulp-imagemin'; // Замена для squoosh
+import mozjpeg from 'imagemin-mozjpeg'; // Для jpg
+import pngquant from 'imagemin-pngquant'; // Для png
+import webp from 'imagemin-webp'; // Для создания webp
 import svgo from 'gulp-svgmin';
 import svgstore from 'gulp-svgstore';
 import del from 'del';
@@ -50,7 +53,10 @@ const scripts = () => {
 
 export const optimizeImages = () => {
   return gulp.src('source/img/**/*.{jpg,png}')
-  .pipe(squoosh())
+  .pipe(imagemin([
+    mozjpeg({ quality: 80, progressive: true }),
+    pngquant({ quality: [0.6, 0.8] })
+  ]))
   .pipe(gulp.dest('build/img'));
 }
 
@@ -63,11 +69,11 @@ export const copyImages = () => {
 
 const createWebp = () => {
   return gulp.src('source/img/**/*.{png,jpg}')
-  .pipe(squoosh({
-  webp: {}
-  }))
-  .pipe(gulp.dest('build/img'))
-  }
+  .pipe(imagemin([
+    webp({ quality: 80 })
+  ]))
+  .pipe(gulp.dest('build/img'));
+}
 
 //svg
 
@@ -85,7 +91,6 @@ const sprite = () => {
     .pipe(rename('sprite.svg'))
     .pipe(gulp.dest('build/img'));
 }
-
 
 //copy
 
@@ -147,19 +152,19 @@ export const build = gulp.series(
   ),
   );
 
-  export default gulp.series(
-    clean,
-    copy,
-    copyImages,
-    gulp.parallel(
-    styles,
-    html,
-    scripts,
-    svg,
-    sprite,
-    createWebp
-    ),
-    gulp.series(
-    server,
-    watcher
-    ));
+export default gulp.series(
+  clean,
+  copy,
+  copyImages,
+  gulp.parallel(
+  styles,
+  html,
+  scripts,
+  svg,
+  sprite,
+  createWebp
+  ),
+  gulp.series(
+  server,
+  watcher
+  ));
