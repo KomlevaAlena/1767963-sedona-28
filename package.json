@@ -26,12 +26,12 @@
     "stylelint-config-htmlacademy": "0.1.11"
   },
   "scripts": {
-    "editorconfig": "editorconfig-cli",
-    "stylelint": "stylelint \"source/less/**/*.less\" --syntax less",
-    "lint": "npm run editorconfig && npm run stylelint",
-    "build": "gulp styles",
-    "start": "gulp"
-  },
+  "editorconfig": "editorconfig-cli",
+  "stylelint": "stylelint \"source/less/**/*.less\" --syntax less",
+  "lint": "npm run editorconfig && npm run stylelint",
+  "build": "gulp build",
+  "start": "gulp"
+},
   "browserslist": [
     "last 2 versions",
     "not dead",
